@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz | Quimic Código</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <header class="menu">
+        <img id="logo" src="img/logo.png" alt="Quimic Código - Logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="polimeros.html">Polímeros</a>
+            <a href="lipidios.html">Lipídios</a>
+
+            <a href="carboidratos.html">Carboidratos</a>
+            <a href="proteinas.html">Proteínas</a>
+
+            <a href="acidos-nucleicos.html">Ácidos nucleicos</a>
+
+            <a class="atual" href="quiz.html">Quiz</a>
+        </nav>
+
+        <button class="tema-toggle" type="button" aria-label="Alternar tema">Modo escuro</button>
+
+    </header>
+
+    <main>
+        <section class="bloco titulo">
+            <h1>QUIZ DO QUIMIC CÓDIGO - MACROMOLÉCULAS</h1>
+            <p>Agora que já estudou, por que não colocamos nossos conhecimentos em prática?</p>
+        </section>
+        <form id="quiz" class="bloco">
+            <section class="pergunta">
+                <h2>1. Qual é uma característica dos polímeros?</h2>
+                
+                <label><input type="radio" name="q1" value="a"> São formados por unidades menores repetidas</label>
+                <label><input type="radio" name="q1" value="b"> São sempre formados por metais</label>
+
+                <label><input type="radio" name="q1" value="c"> Não podem existir na natureza</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>2. Qual é a principal característica dos lipídios?</h2>
+                <label><input type="radio" name="q2" value="a"> São facilmente dissolvidos em água</label>
+
+                <label><input type="radio" name="q2" value="b"> São pouco solúveis em água</label>
+                <label><input type="radio" name="q2" value="c"> São formados apenas por aminoácidos</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>3. Qual alimento é rico em carboidratos?</h2>
+                <label><input type="radio" name="q3" value="a"> Arroz</label>
+                <label><input type="radio" name="q3" value="b"> Ovo</label>
+                <label><input type="radio" name="q3" value="c"> Azeite</label>
+
+
+            </section>
+
+            <section class="pergunta">
+                <h2>4. Qual elemento está presente em todas as proteínas?</h2>
+                <label><input type="radio" name="q4" value="a"> Ferro</label>
+
+                <label><input type="radio" name="q4" value="b"> Nitrogênio</label>
+
+                <label><input type="radio" name="q4" value="c"> Sódio</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>5. Quais são os dois principais tipos de ácidos nucleicos?</h2>
+                <label><input type="radio" name="q5" value="a"> DNA e RNA</label>
+                <label><input type="radio" name="q5" value="b"> Glicose e frutose</label>
+
+                <label><input type="radio" name="q5" value="c"> Amido e celulose</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>6. Qual é um exemplo de polímero natural?</h2>
+                <label><input type="radio" name="q6" value="a"> Amido</label>
+                <label><input type="radio" name="q6" value="b"> Água</label>
+
+                <label><input type="radio" name="q6" value="c"> Oxigênio</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>7. Qual substância pertence ao grupo dos lipídios?</h2>
+
+                <label><input type="radio" name="q7" value="a"> Glicose</label>
+
+                <label><input type="radio" name="q7" value="b"> Óleo</label>
+                <label><input type="radio" name="q7" value="c"> Hemoglobina</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>8. Qual carboidrato é encontrado na parede celular dos vegetais?</h2>
+
+                <label><input type="radio" name="q8" value="a"> Lactose</label>
+
+                <label><input type="radio" name="q8" value="b"> Glicogênio</label>
+                <label><input type="radio" name="q8" value="c"> Celulose</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>9. Qual é uma função das proteínas no organismo?</h2>
+                <label><input type="radio" name="q9" value="a"> Construir e reparar tecidos</label>
+
+                <label><input type="radio" name="q9" value="b"> Armazenar informações genéticas</label>
+                <label><input type="radio" name="q9" value="c"> Formar apenas reservas de gordura</label>
+            </section>
+
+            <section class="pergunta">
+                <h2>10. Qual é a principal diferença entre DNA e RNA?</h2>
+                <label><input type="radio" name="q10" value="a"> O DNA é um lipídio e o RNA é uma proteína</label>
+
+                <label><input type="radio" name="q10" value="b"> O DNA possui desoxirribose e o RNA possui ribose</label>
+                <label><input type="radio" name="q10" value="c"> O DNA é formado por aminoácidos</label>
+            </section>
+            <button type="submit">Conferir respostas</button>
+            <button type="reset">Recomeçar</button>
+            <p class="resultado" id="resultado"></p>
+        </form>
+    </main>
+    <footer>Projeto Quimic Código</footer>
+
+
+    <script>
+        const quiz = document.getElementById("quiz");
+        const resultado = document.getElementById("resultado");
+        quiz.addEventListener("submit", function(evento) {
+            evento.preventDefault();
+            const corretas = {q1: "a", q2: "b", q3: "a", q4: "b", q5: "a", q6: "a", q7: "b", q8: "c", q9: "a", q10: "b", };
+            let pontos = 0;
+            for (let pergunta in corretas) {
+                const resposta = quiz.querySelector('input[name="' + pergunta + '"]:checked');
+                if (resposta && resposta.value === corretas[pergunta]) {
+                    pontos++;
+                }
+            }
+            resultado.textContent = "Você acertou " + pontos + " de 10 perguntas!";
+        });
+        quiz.addEventListener("reset", function() {
+            resultado.textContent = "";
+        });
+        
+    </script>
+    <script src="js/site.js"></script>
+</body>
+</html>

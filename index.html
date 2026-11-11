@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quimic Código</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <header class="menu">
+        <img id="logo" src="img/logo.png" alt="Quimic Código - Logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="polimeros.html">Polímeros</a>
+            <a href="lipidios.html">Lipídios</a>
+            <a href="carboidratos.html">Carboidratos</a>
+
+            <a href="proteinas.html">Proteínas</a>
+            <a href="acidos-nucleicos.html">Ácidos nucleicos</a>
+            <a href="quiz.html">Quiz</a>
+        </nav>
+        
+        <button class="tema-toggle" type="button" aria-label="Alternar tema">Modo escuro</button>
+    </header>
+
+    <main>
+        <section class="introducao">
+            <div>
+                <h1>MACROMOLÉCULAS</h1>
+                <p>As macromoléculas fazem parte dos seres vivos e estão presentes em várias coisas do nosso dia a dia. Conheça um pouco mais sobre cada tipo e descubra sua importância.</p>
+                <p><strong>Discentes:</strong> Anthony Raed, João Victor e Letícia Silvestre</p>
+                <a class="botao" href="quiz.html">Fazer o quiz</a>
+            </div>
+            <img src="img/introducao-imagem.png" alt="Polímeros, Ácidos Nucleicos, Carboidratos, Lipídeos e Aminoácidos e Proteínas">
+        </section>
+
+        <section class="conjunto-cards">
+            <h2>EXPLORE OS TEMAS</h2>
+            <p>Escolha um assunto para começar a aprender.</p>
+            <div class="busca">
+                <input type="text" id="pesquisa" placeholder="Pesquise um tema...">
+            </div>
+            <div class="filtros">
+                <button class="filtro selecionado" data-categoria="todos">Todos</button>
+                <button class="filtro" data-categoria="natureza">Natureza</button>
+                <button class="filtro" data-categoria="saude">Saúde</button>
+                <button class="filtro" data-categoria="tecnologia">Tecnologia</button>
+            </div>
+
+            <div class="cards" id="cards">
+                <article class="card" data-categoria="natureza tecnologia">
+                    <img src="img/Polimeros.png" alt="Materiais plásticos e tecnologia">
+                    <div>
+                        <h3>Polímeros</h3>
+                        <p>Explore a estrutura dos polímeros sintéticos e naturais e suas diversas aplicações na indústria e no dia a dia.</p>
+                        <a href="polimeros.html">Saiba mais</a>
+                    </div>
+                </article>
+
+                <article class="card" data-categoria="saude">
+                    <img src="img/lipidios.png" alt="Azeite usado na alimentação">
+                    <div>
+                        <h3>Lipídios</h3><p>Descubra a importância dos óleos e gorduras para o armazenamento de energia e proteção celular no organismo.</p>
+                        <a href="lipidios.html">Saiba mais</a>
+                    </div>
+                </article>
+
+                <article class="card" data-categoria="saude natureza">
+                    <img src="img/carboidratos.png" alt="Alimentos que contêm carboidratos">
+                    <div>
+                        <h3>Carboidratos</h3><p>Entenda como açúcares e amidos servem como o principal combustível para o funcionamento do corpo humano.</p>
+                        <a href="carboidratos.html">Saiba mais</a>
+                    </div>
+                </article>
+
+                <article class="card" data-categoria="saude">
+                    <img src="img/Aminoacidos.png" alt="Alimentos variados">
+                    <div>
+                        <h3>Aminoácidos e proteínas</h3>
+                        <p>Compreenda o papel essencial dos aminoácidos na construção muscular, regeneração de tecidos e reações biológicas.</p>
+                        <a href="proteinas.html">Saiba mais</a>
+                    </div>
+                </article>
+
+                        <article class="card" data-categoria="tecnologia natureza">
+                    <img src="img/acidos nucleicos.png" alt="Representação de DNA">
+                    <div>
+                        <h3>Ácidos nucleicos</h3>
+                        <p>Saiba como o DNA e o RNA armazenam, transmitem e utilizam as informações genéticas fundamentais dos seres vivos.</p>
+                        <a href="acidos-nucleicos.html">Saiba mais</a>
+                    </div>
+                </article>
+
+            </div>
+            <p id="mensagem"></p>
+        </section>
+
+        <section class="quiz-rodape">
+            <h2>TESTE SEUS CONHECIMENTOS</h2>
+            <p>Depois de explorar os temas, responda às perguntas do nosso quiz.</p>
+            <a class="botao" href="quiz.html">Ir para o quiz</a>
+        </section>
+    </main>
+
+    <footer>Projeto Quimic Código</footer>
+
+    <script>
+        const pesquisa = document.getElementById("pesquisa");
+        const cards = document.querySelectorAll(".card");
+        const filtros = document.querySelectorAll(".filtro");
+
+        const mensagem = document.getElementById("mensagem");
+        let categoriaAtual = "todos";
+
+        function filtrarCards() {
+            let termo = pesquisa.value.toLowerCase();
+            let encontrados = 0;
+            cards.forEach(function(card) {
+                let texto = card.innerText.toLowerCase();
+                let categorias = card.dataset.categoria;
+
+                let aparece = texto.includes(termo) &&
+                    (categoriaAtual === "todos" || categorias.includes(categoriaAtual));
+                card.style.display = aparece ? "block" : "none";
+                if (aparece) encontrados++;
+            });
+            mensagem.textContent = encontrados === 0 ? "Nenhum tema encontrado." : "";
+        }
+
+        pesquisa.addEventListener("input", filtrarCards);
+        filtros.forEach(function(botao) {
+
+            botao.addEventListener("click", function() {
+                filtros.forEach(function(item) { item.classList.remove("selecionado"); });
+                botao.classList.add("selecionado");
+
+                
+                categoriaAtual = botao.dataset.categoria;
+                filtrarCards();
+            });
+        });
+    </script>
+    <script src="js/site.js"></script>
+</body>
+</html>
