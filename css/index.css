@@ -166,9 +166,7 @@ button,
     transition: background .3s, transform .3s;
 }
 
-.botao:hover,
-button:hover,
-.card a:hover {
+.botao:hover,button:hover, .card a:hover {
     background: #75471f;
     transform: translateY(-2px);
 }
@@ -193,7 +191,6 @@ button:hover,
     padding: 12px;
     border: 2px solid #abdbf6;
     border-radius: 9px;
-    font: inherit;
     margin-bottom: 15px;
 }
 
@@ -212,12 +209,10 @@ button:hover,
     background: #fffef1;
     color: #502c0a;
     cursor: pointer;
-    font: inherit;
     transition: .3s;
 }
 
-.filtro:hover,
-.filtro.selecionado {
+.filtro:hover,.filtro.selecionado {
     background: #abdbf6;
 }
 
@@ -268,8 +263,7 @@ button:hover,
     background: #fffef1;
 }
 
-.tabela th,
-.tabela td {
+.tabela th,.tabela td {
     border: 1px solid #502c0a;
     padding: 10px;
     text-align: left;
@@ -371,8 +365,7 @@ body.tema-escuro {
     color: #edf0f4 !important;
 }
 
-body.tema-escuro main,
-body.tema-escuro section,
+body.tema-escuro main,body.tema-escuro section,
 body.tema-escuro article,
 body.tema-escuro .introducao,
 body.tema-escuro .apresentacao,

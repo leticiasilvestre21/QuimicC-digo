@@ -115,7 +115,9 @@
         function filtrarCards() {
             let termo = pesquisa.value.toLowerCase();
             let encontrados = 0;
+            
             cards.forEach(function(card) {
+
                 let texto = card.innerText.toLowerCase();
                 let categorias = card.dataset.categoria;
 
